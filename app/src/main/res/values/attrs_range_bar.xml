@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RangeBar">
+        <attr name="solidBackgroundColor" format="color"/><!--solid background color. 固定未选中的进度条颜色。-->
+        <attr name="rangeColor" format="color"/><!-- selected range background color. 选中的范围颜色。-->
+        <attr name="textColor" format="color"/><!--top text color. 控件中文字颜色 -->
+        <attr name="sliderDrawable" format="reference"/><!--slider drawable resource id. 滑块资源id，左右两边相同。-->
+        <attr name="rangeHeight" format="dimension"/><!-- range bar height. 进度条高度-->
+        <attr name="textSize" format="dimension"/><!--text size . 文本大小-->
+        <attr name="verticalLineHeight" format="dimension"/><!-- vertical line height. 竖直的线的高度-->
+        <attr name="verticalPadding" format="dimension"/><!-- vertical content padding. 竖直方向的 内边距-->
+        <attr name="textArray" format="reference"/><!-- draw text in top . 顶部显示的文本数组-->
+
+    </declare-styleable>
+</resources>

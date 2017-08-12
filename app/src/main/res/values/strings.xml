@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">RangeBar</string>
+    <string-array name="range_array" >
+        <item>0</item>
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>不限</item>
+    </string-array>
 </resources>
