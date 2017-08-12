@@ -9,7 +9,7 @@
 
 ## 构思 ##
 动手之前，我先自己构思了下该如何实现，画了一张图：
-![构思图]()
+![构思图](https://github.com/shunfayang/RangeBar/blob/master/img/RangeBar.png)
 
 1. 固定背景不变，与手势无关；
 2. 左边滑块，决定左边选择；
