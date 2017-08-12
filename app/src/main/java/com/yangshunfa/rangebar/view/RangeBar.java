@@ -349,6 +349,8 @@ public class RangeBar extends View {
         }
         this.mDefaultLeftPosition = leftSelect;
         this.mDefaultRightPosition = rightSelect;
+        mLeftSlider.position = leftSelect;
+        mRightSlider.position = rightSelect;
         invalidate();
     }
 
