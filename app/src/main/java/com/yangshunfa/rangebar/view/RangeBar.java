@@ -38,6 +38,7 @@ public class RangeBar extends View {
     private float mRadius;
     private int mGrayColor;
     private int mSelectedColor;
+    private OnRangeSelectedListener mListener;
 
     /** 文字 */
     private CharSequence [] mTextArray = {"10", "232", "323" ,"43" ,"5" , "2383"};
@@ -54,6 +55,8 @@ public class RangeBar extends View {
     private float mTextSize;
     private float mVerticalLineHeight;
     private float mContentPadding;
+    private int mDefaultLeftPosition;
+    private int mDefaultRightPosition;
 
     public RangeBar(Context context) {
         super(context);
@@ -111,13 +114,17 @@ public class RangeBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         // first, calculate left and right by Slider.position. 通过position 去计算 left 和 right。
-//        mLeftSlider.center = mSolidLeft + mRange * mLeftSlider.position;
-//        mLeftSlider.left = mLeftSlider.center - leftAndRight;
-//        mLeftSlider.right = mLeftSlider.center + leftAndRight;
-//
-//        mRightSlider.center = mSolidLeft + mRange * mRightSlider.position;
-//        mRightSlider.left = mRightSlider.center - leftAndRight;
-//        mRightSlider.right = mRightSlider.center + leftAndRight;
+        if (mDefaultLeftPosition >= 0 || mDefaultRightPosition >= 0){
+            mLeftSlider.center = mSolidLeft + mRange * mDefaultLeftPosition;
+            mLeftSlider.left = mLeftSlider.center - leftAndRight;
+            mLeftSlider.right = mLeftSlider.center + leftAndRight;
+
+            mRightSlider.center = mSolidLeft + mRange * mDefaultRightPosition;
+            mRightSlider.left = mRightSlider.center - leftAndRight;
+            mRightSlider.right = mRightSlider.center + leftAndRight;
+            mDefaultLeftPosition = -1;
+            mDefaultRightPosition = -1;
+        }
 
         mPaint.setColor(mSolidColor);
         // draw bar background. 固定背景
@@ -255,6 +262,10 @@ public class RangeBar extends View {
             slider.position = index;
             slider.center = mRangeArray[index];
         }
+        // selected listener. 选中监听。
+        if (mListener != null){
+            mListener.onRangeSelected(mLeftSlider.position, mRightSlider.position);
+        }
         slider.left = slider.center - leftAndRight;
         slider.right = slider.center + leftAndRight;
     }
@@ -319,6 +330,12 @@ public class RangeBar extends View {
         float center;// 中心点
     }
 
+    /**
+     * set default range
+     * 设置默认选中范围
+     * @param leftSelect 左边选中角标
+     * @param rightSelect 右边选中角标
+     */
     public void setRange(int leftSelect, int rightSelect){
         int length = mTextArray.length;
         if (leftSelect >= length || rightSelect >= length){
@@ -328,9 +345,33 @@ public class RangeBar extends View {
         } else if (leftSelect == rightSelect){
             throw new RuntimeException("leftSelect must be less than rightSelect. leftSelect 必须小于 rightSelect。");
         }
-        mLeftSlider.position = leftSelect;
-        mRightSlider.position = rightSelect;
+        this.mDefaultLeftPosition = leftSelect;
+        this.mDefaultRightPosition = rightSelect;
         invalidate();
+    }
+
+    /**
+     * Get range position from left Slider.
+     * 获取左边位置
+     */
+    public int getLeftRangePosition(){
+        return mLeftSlider.position;
+    }
+
+    /**
+     * Get range position from right Slider.
+     * 获取右边位置
+     */
+    public int getRightRangePosition(){
+        return mRightSlider.position;
+    }
+
+    public void setOnRangeSelectedListener(OnRangeSelectedListener l){
+        this.mListener = l;
+    }
+
+    public interface OnRangeSelectedListener{
+        void onRangeSelected(int left, int right);
     }
 
 }
