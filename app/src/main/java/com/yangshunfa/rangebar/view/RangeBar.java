@@ -16,7 +16,7 @@ import com.yangshunfa.rangebar.R;
 
 /**
  * Created by yangshunfa on 2017/8/10.
- * tips: 左右两端可选的 seekBar ；仿制美团；
+ * tips: 左右两端可选的 Range Bar ；仿制美团；可回弹；
  */
 
 public class RangeBar extends View {
@@ -177,8 +177,10 @@ public class RangeBar extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         // init center point
         int measuredWidth = getMeasuredWidth();
+        int measuredHeight = getMeasuredHeight();
         int width = measuredWidth - getPaddingLeft() - getPaddingRight();
-        heightCenter = width / 2;
+        heightCenter = measuredHeight * 2 / 3;
+
         // 计算固定背景和进度条的 top 和 bottom
         int rangeHeight = (int) (mRangeHeight / 2);
         mSolidTop = heightCenter - rangeHeight;
@@ -371,6 +373,11 @@ public class RangeBar extends View {
     }
 
     public interface OnRangeSelectedListener{
+        /**
+         * return selected position. 返回选中的位置
+         * @param left
+         * @param right
+         */
         void onRangeSelected(int left, int right);
     }
 

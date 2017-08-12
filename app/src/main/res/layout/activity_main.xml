@@ -21,6 +21,7 @@
         app:sliderDrawable="@drawable/range_slider_icon"
         app:solidBackgroundColor="@color/gray2"
         android:paddingBottom="10dp"
+        android:background="@color/gray2"
         android:layout_width="match_parent"
         android:layout_height="200dp"/>
     <Button
