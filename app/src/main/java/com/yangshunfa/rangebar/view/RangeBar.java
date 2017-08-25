@@ -109,6 +109,7 @@ public class RangeBar extends View {
         leftAndRight = mBitmapWidth / 2;
         topAndBottom = mBitmapHeight / 2;
 //        Log.d("moose", "bitmap height= " + mBitmapHeight + " width=" + mBitmapWidth);
+        setRange(0, mTextArray.length - 1);
     }
 
     @Override
