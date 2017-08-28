@@ -219,10 +219,12 @@ public class RangeBar extends View {
         switch (action){
             case MotionEvent.ACTION_DOWN:
                 if (isTouchSlider(mLeftSlider, event)){
+                    getParent().requestDisallowInterceptTouchEvent(true);
                     mLeftSlider.isTouching = true;
                     updateTouch(mLeftSlider, event);
 //                    invalidate();
                 } else if (isTouchSlider(mRightSlider, event)){
+                    getParent().requestDisallowInterceptTouchEvent(true);
                     mRightSlider.isTouching = true;
 //                    invalidate();
                     updateTouch(mRightSlider, event);
@@ -231,16 +233,20 @@ public class RangeBar extends View {
             case MotionEvent.ACTION_MOVE:
                 if (mLeftSlider.isTouching) {
                     updateTouch(mLeftSlider, event);
+                    getParent().requestDisallowInterceptTouchEvent(true);
                 } else if (mRightSlider.isTouching){
                     updateTouch(mRightSlider, event);
+                    getParent().requestDisallowInterceptTouchEvent(true);
                 }
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 if (mLeftSlider.isTouching) {
                     autoScroll(mLeftSlider);
+                    getParent().requestDisallowInterceptTouchEvent(true);
                 } else if (mRightSlider.isTouching){
                     autoScroll(mRightSlider);
+                    getParent().requestDisallowInterceptTouchEvent(true);
                 }
                 mRightSlider.isTouching = false;
                 mLeftSlider.isTouching = false;
