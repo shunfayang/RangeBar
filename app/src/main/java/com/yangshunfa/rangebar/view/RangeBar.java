@@ -79,6 +79,7 @@ public class RangeBar extends View {
         mVerticalLineHeight = t.getDimension(R.styleable.RangeBar_verticalLineHeight, context.getResources().getDimension(R.dimen.moose_range_bar_line_height));
         mContentPadding = t.getDimension(R.styleable.RangeBar_verticalPadding, context.getResources().getDimension(R.dimen.moose_range_bar_padding));
         mTextArray = t.getTextArray(R.styleable.RangeBar_textArray);
+        t.recycle();
 //        if (mTextArray)
         // init
         init(context);
